@@ -53,7 +53,7 @@ export const useAuthStore = create((set,get) => ({
     checkAuth: async() =>{
         set({isCheckAuth:true,error:null});
         try {
-            const response = await axios.post(`${API_URI}/check-auth`)
+            const response = await axios.post(`${API_URL}/check-auth`)
 
             set({user:response?.data?.user, isAuthenticated:true, isCheckAuth:false})
             return response.data;
@@ -66,7 +66,7 @@ export const useAuthStore = create((set,get) => ({
     logout: async() =>{
         set({isLoading:true,error:null});
         try {
-            await axios.post(`${API_URI}/logout`)
+            await axios.post(`${API_URL}/logout`)
 
             set({user:null, isAuthenticated:false, isLoading:false})
         } catch (error) {;
@@ -78,7 +78,7 @@ export const useAuthStore = create((set,get) => ({
     forgotPassword: async(email) =>{
          set({isLoading:true,error:null});
         try {
-            const response = await axios.post(`${API_URI}/forgot-password`,{email})
+            const response = await axios.post(`${API_URL}/forgot-password`,{email})
 
             set({message: response?.data?.message, isLoading:false})
         } catch (error) {;
